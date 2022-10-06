@@ -35,7 +35,7 @@ type extModules =
   | PsfSlpIndexer
 
 external require: string => extModules = "require"
-@new external newElectrumxModule: libConfiguration => extModules = "electrumx"
+// @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
 @new external newControlModule: libConfiguration => extModules = "control"
 @new external newMiningModule: libConfiguration => extModules = "mining"
 @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
@@ -59,6 +59,11 @@ external require: string => extModules = "require"
 // @new external newDSProofModule: libConfiguration => extModules = "dsProof"
 // @new external newECashModule: libConfiguration => extModules = "eCash"
 // @new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
+module Electrumx = {
+  type t
+external require: string => t = "require"
+@new external newElectrumxModule: libConfiguration => t = "electrumx"
+}
 
 module Address = {
   type t
@@ -245,7 +250,7 @@ module BCHJS = {
             @as("Transaction") transaction:Transaction.t,
             @as("DSProof") dsProof: DSProof.t,
             @as("Ecash") eCash: Ecash.t,
-            @as("Electrumx") electrumx: extModules,
+            @as("Electrumx") electrumx: Electrumx.t,
             @as("PsfSlpIndexer") psfSlpIndexer: PsfSlpIndexer.t}
 
   let make = config => {
@@ -276,7 +281,7 @@ module BCHJS = {
       authToken,
     }
 
-    let electrumx = newElectrumxModule(libConfig)
+    let electrumx = Electrumx.newElectrumxModule(libConfig)
     // Js.log(electrumx)
     let control = newControlModule(libConfig)
     let mining = newMiningModule(libConfig)

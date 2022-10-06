@@ -58,7 +58,7 @@ external require: string => extModules = "require"
 // @new external newTransactionModule: libConfiguration => extModules = "transaction"
 // @new external newDSProofModule: libConfiguration => extModules = "dsProof"
 // @new external newECashModule: libConfiguration => extModules = "eCash"
-@new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
+// @new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
 
 module Address = {
   type t
@@ -146,6 +146,11 @@ module Ecash = {
 external require: string => t = "require"
 @new external newECashModule: libConfiguration => t = "eCash"
 }
+module PsfSlpIndexer = {
+  type t
+external require: string => t = "require"
+@new external newPsfSlpIndexerModule: libConfiguration => t = "psfSlpIndexer"
+}
 let bitcoinCash = require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
@@ -169,7 +174,7 @@ let transaction = Transaction.require("../transaction")
 let dsProof = DSProof.require("../dsproof")
 let eCash = Ecash.require("../ecash")
 let electrumx = require("../electrumx")
-let psfSlpIndexer = require("../psf-slp-indexer")
+let psfSlpIndexer = PsfSlpIndexer.require("../psf-slp-indexer")
 
 type restURL = string
 type apiToken
@@ -241,7 +246,7 @@ module BCHJS = {
             @as("DSProof") dsProof: DSProof.t,
             @as("Ecash") eCash: Ecash.t,
             @as("Electrumx") electrumx: extModules,
-            @as("PsfSlpIndexer") psfSlpIndexer: extModules}
+            @as("PsfSlpIndexer") psfSlpIndexer: PsfSlpIndexer.t}
 
   let make = config => {
     let restURL = switch config {
@@ -296,7 +301,7 @@ module BCHJS = {
     let transaction = Transaction.newTransactionModule(libConfig)
     let dsProof = DSProof.newDSProofModule(libConfig)
     let ecash = Ecash.newECashModule(libConfig)
-    let psfSlpIndexer = newPsfSlpIndexerModule(libConfig)
+    let psfSlpIndexer = PsfSlpIndexer.newPsfSlpIndexerModule(libConfig)
     // Js.log2("Crypto module is: ", crypto)
     let ecPair = ecPair->ECPair.setAddress(address)
     let hdNode = HDNode.newHDNodeModule(address)

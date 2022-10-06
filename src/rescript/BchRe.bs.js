@@ -40,6 +40,8 @@ var DSProof = {};
 
 var Ecash = {};
 
+var PsfSlpIndexer = {};
+
 var bitcoinCash = require("../bitcoincash");
 
 var crypto = require("../crypto");
@@ -181,6 +183,7 @@ exports.Utxo = Utxo;
 exports.Transaction = Transaction;
 exports.DSProof = DSProof;
 exports.Ecash = Ecash;
+exports.PsfSlpIndexer = PsfSlpIndexer;
 exports.bitcoinCash = bitcoinCash;
 exports.crypto = crypto;
 exports.util = util;

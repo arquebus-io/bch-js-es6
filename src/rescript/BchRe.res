@@ -54,8 +54,8 @@ external require: string => extModules = "require"
 // @new external newUtilModule: libConfiguration => extModules = "util"
 // @new external newSchnorrModule: libConfiguration => extModules = "schnorr"
 // @new external newSLPModule: libConfiguration => extModules = "slp"
-@new external newUtxoModule: libConfiguration => extModules = "utxo"
-@new external newTransactionModule: libConfiguration => extModules = "transaction"
+// @new external newUtxoModule: libConfiguration => extModules = "utxo"
+// @new external newTransactionModule: libConfiguration => extModules = "transaction"
 @new external newDSProofModule: libConfiguration => extModules = "dsProof"
 @new external newECashModule: libConfiguration => extModules = "eCash"
 @new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
@@ -126,6 +126,16 @@ module SLP = {
 external require: string => t = "require"
 @new external newSLPModule: libConfiguration => t = "slp"
 }
+module Utxo = {
+  type t
+external require: string => t = "require"
+@new external newUtxoModule: libConfiguration => t = "utxo"
+}
+module Transaction = {
+  type t
+external require: string => t = "require"
+@new external newTransactionModule: libConfiguration => t = "transaction"
+}
 let bitcoinCash = require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
@@ -144,8 +154,8 @@ let price = Price.require("../price")
 let schnorr = Schnorr.require("../schnorr")
 let slp = SLP.require("../slp/slp")
 let encryption = Generating.require("../encryption")
-let utxo = require("../utxo")
-let transaction = require("../transaction")
+let utxo = Utxo.require("../utxo")
+let transaction = Transaction.require("../transaction")
 let dsProof = require("../dsproof")
 let eCash = require("../ecash")
 let electrumx = require("../electrumx")
@@ -216,8 +226,8 @@ module BCHJS = {
             @as("Schnorr") schnorr: Schnorr.t,
             @as("SLP") slp:SLP.t,
             @as("Encryption") encryption: Encryption.t,
-            @as("Utxo") utxo: extModules,
-            @as("Transaction") transaction: extModules,
+            @as("Utxo") utxo: Utxo.t,
+            @as("Transaction") transaction:Transaction.t,
             @as("DSProof") dsProof: extModules,
             @as("Ecash") eCash: extModules,
             @as("Electrumx") electrumx: extModules,
@@ -272,8 +282,8 @@ module BCHJS = {
     let util = Util.newUtilModule(libConfig)
     let schnorr = Schnorr.newSchnorrModule(libConfig)
     let slp = SLP.newSLPModule(libConfig)
-    let utxo = newUtxoModule(libConfig)
-    let transaction = newTransactionModule(libConfig)
+    let utxo = Utxo.newUtxoModule(libConfig)
+    let transaction = Transaction.newTransactionModule(libConfig)
     let dsProof = newDSProofModule(libConfig)
     let ecash = newECashModule(libConfig)
     let psfSlpIndexer = newPsfSlpIndexerModule(libConfig)

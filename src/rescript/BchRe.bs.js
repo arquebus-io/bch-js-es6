@@ -32,6 +32,10 @@ var Schnorr = {};
 
 var SLP = {};
 
+var Utxo = {};
+
+var Transaction = {};
+
 var bitcoinCash = require("../bitcoincash");
 
 var crypto = require("../crypto");
@@ -169,6 +173,8 @@ exports.Script = Script;
 exports.Util = Util;
 exports.Schnorr = Schnorr;
 exports.SLP = SLP;
+exports.Utxo = Utxo;
+exports.Transaction = Transaction;
 exports.bitcoinCash = bitcoinCash;
 exports.crypto = crypto;
 exports.util = util;

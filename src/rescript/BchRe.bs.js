@@ -24,6 +24,8 @@ var TransactionBuilder = {};
 
 var BitcoinCash = {};
 
+var Blockchain = {};
+
 var $$Crypto = {};
 
 var Encryption = {};
@@ -183,6 +185,7 @@ exports.HDNode = HDNode;
 exports.Mnemonic = Mnemonic;
 exports.TransactionBuilder = TransactionBuilder;
 exports.BitcoinCash = BitcoinCash;
+exports.Blockchain = Blockchain;
 exports.$$Crypto = $$Crypto;
 exports.Encryption = Encryption;
 exports.Generating = Generating;

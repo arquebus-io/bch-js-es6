@@ -41,7 +41,7 @@ external require: string => extModules = "require"
 // @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
 // @new external newAddressModule: libConfiguration => extModules = "address"
 // @new external newBitcoinCashModule: libConfiguration => extModules = "bitcoinCash"
-@new external newBlockchainModule: libConfiguration => extModules = "blockchain"
+// @new external newBlockchainModule: libConfiguration => extModules = "blockchain"
 // @new external newCryptoModule: unit => extModules = "crypto"
 // @new external newECPairModule: unit => extModules = "ECPair"
 // @new external newEncryptionModule: libConfiguration => extModules = "encryption"
@@ -107,6 +107,11 @@ module TransactionBuilder = {
 module BitcoinCash = {
   type t
 @new external newBitcoinCashModule: Address.t => t = "bitcoinCash"
+}
+module Blockchain = {
+  type t
+external require: string => t = "require"
+@new external newBlockchainModule: libConfiguration => t = "blockchain"
 }
 module Crypto = {
   type t
@@ -174,7 +179,7 @@ external require: string => t = "require"
 let bitcoinCash = require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
-let blockchain = require("../blockchain")
+let blockchain = Blockchain.require("../blockchain")
 let control = Control.require("../control")
 let generating = require("../generating")
 let mining = Mining.require("../mining")
@@ -248,7 +253,7 @@ module BCHJS = {
             @as("Script") script: Script.t,
             @as("Crypto") crypto: extModules,
             @as("Util") util: Util.t,
-            @as("Blockchain") blockchain: extModules,
+            @as("Blockchain") blockchain: Blockchain.t,
             @as("Control") control: Control.t,
             @as("Generating") generating: extModules,
             @as("Mining") mining: Mining.t,
@@ -303,7 +308,7 @@ module BCHJS = {
     let rawTransactions = RawTransactions.newRawTransactionsModule(libConfig)
     let address = Address.newAddressModule(libConfig)
     // Js.log2("Address module is: ", address)
-    let blockchain = newBlockchainModule(libConfig)
+    let blockchain = Blockchain.newBlockchainModule(libConfig)
     // let crypto = newCryptoModule()
     Js.log2("Crypto module is: ", crypto)
     // let ecPair = ECPair.newECPairModule()

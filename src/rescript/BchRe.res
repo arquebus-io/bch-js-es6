@@ -38,7 +38,7 @@ external require: string => extModules = "require"
 // @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
 // @new external newControlModule: libConfiguration => extModules = "control"
 // @new external newMiningModule: libConfiguration => extModules = "mining"
-@new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
+// @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
 // @new external newAddressModule: libConfiguration => extModules = "address"
 // @new external newBitcoinCashModule: libConfiguration => extModules = "bitcoinCash"
 @new external newBlockchainModule: libConfiguration => extModules = "blockchain"
@@ -65,6 +65,11 @@ external require: string => t = "require"
 @new external newElectrumxModule: libConfiguration => t = "electrumx"
 }
 
+module RawTransactions = {
+  type t
+external require: string => t = "require"
+@new external newRawTransactionsModule: libConfiguration => t = "rawTransactions"
+}
 module Control = {
   type t
 external require: string => t = "require"
@@ -173,7 +178,7 @@ let blockchain = require("../blockchain")
 let control = Control.require("../control")
 let generating = require("../generating")
 let mining = Mining.require("../mining")
-let rawTransactions = require("../raw-transactions")
+let rawTransactions = RawTransactions.require("../raw-transactions")
 let mnemonic = require("../mnemonic")
 let address = require("../address")
 let hdNode = require("../hdnode")
@@ -247,7 +252,7 @@ module BCHJS = {
             @as("Control") control: Control.t,
             @as("Generating") generating: extModules,
             @as("Mining") mining: Mining.t,
-            @as("RawTransacations") rawTransactions: extModules,
+            @as("RawTransacations") rawTransactions:RawTransactions.t,
             @as("Mnemonic") mnemonic: Mnemonic.t,
             @as("HDNode") hdNode: HDNode.t,
             @as("TransactionBuilder") transactionBuilder: TransactionBuilder.t,
@@ -295,7 +300,7 @@ module BCHJS = {
     // Js.log(electrumx)
     let control = Control.newControlModule(libConfig)
     let mining = Mining.newMiningModule(libConfig)
-    let rawTransactions = newRawTransactionsModule(libConfig)
+    let rawTransactions = RawTransactions.newRawTransactionsModule(libConfig)
     let address = Address.newAddressModule(libConfig)
     // Js.log2("Address module is: ", address)
     let blockchain = newBlockchainModule(libConfig)

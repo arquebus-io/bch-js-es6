@@ -6,6 +6,8 @@ var defaultRestApi = "https://api.fullstack.cash/v5/";
 
 var Electrumx = {};
 
+var RawTransactions = {};
+
 var Control = {};
 
 var Mining = {};
@@ -172,6 +174,7 @@ var BCHJS = {
 
 exports.defaultRestApi = defaultRestApi;
 exports.Electrumx = Electrumx;
+exports.RawTransactions = RawTransactions;
 exports.Control = Control;
 exports.Mining = Mining;
 exports.Address = Address;

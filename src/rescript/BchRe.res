@@ -56,8 +56,8 @@ external require: string => extModules = "require"
 // @new external newSLPModule: libConfiguration => extModules = "slp"
 // @new external newUtxoModule: libConfiguration => extModules = "utxo"
 // @new external newTransactionModule: libConfiguration => extModules = "transaction"
-@new external newDSProofModule: libConfiguration => extModules = "dsProof"
-@new external newECashModule: libConfiguration => extModules = "eCash"
+// @new external newDSProofModule: libConfiguration => extModules = "dsProof"
+// @new external newECashModule: libConfiguration => extModules = "eCash"
 @new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
 
 module Address = {
@@ -136,6 +136,16 @@ module Transaction = {
 external require: string => t = "require"
 @new external newTransactionModule: libConfiguration => t = "transaction"
 }
+module DSProof = {
+  type t
+external require: string => t = "require"
+@new external newDSProofModule: libConfiguration => t = "dsProof"
+}
+module Ecash = {
+  type t
+external require: string => t = "require"
+@new external newECashModule: libConfiguration => t = "eCash"
+}
 let bitcoinCash = require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
@@ -156,8 +166,8 @@ let slp = SLP.require("../slp/slp")
 let encryption = Generating.require("../encryption")
 let utxo = Utxo.require("../utxo")
 let transaction = Transaction.require("../transaction")
-let dsProof = require("../dsproof")
-let eCash = require("../ecash")
+let dsProof = DSProof.require("../dsproof")
+let eCash = Ecash.require("../ecash")
 let electrumx = require("../electrumx")
 let psfSlpIndexer = require("../psf-slp-indexer")
 
@@ -228,8 +238,8 @@ module BCHJS = {
             @as("Encryption") encryption: Encryption.t,
             @as("Utxo") utxo: Utxo.t,
             @as("Transaction") transaction:Transaction.t,
-            @as("DSProof") dsProof: extModules,
-            @as("Ecash") eCash: extModules,
+            @as("DSProof") dsProof: DSProof.t,
+            @as("Ecash") eCash: Ecash.t,
             @as("Electrumx") electrumx: extModules,
             @as("PsfSlpIndexer") psfSlpIndexer: extModules}
 
@@ -284,8 +294,8 @@ module BCHJS = {
     let slp = SLP.newSLPModule(libConfig)
     let utxo = Utxo.newUtxoModule(libConfig)
     let transaction = Transaction.newTransactionModule(libConfig)
-    let dsProof = newDSProofModule(libConfig)
-    let ecash = newECashModule(libConfig)
+    let dsProof = DSProof.newDSProofModule(libConfig)
+    let ecash = Ecash.newECashModule(libConfig)
     let psfSlpIndexer = newPsfSlpIndexerModule(libConfig)
     // Js.log2("Crypto module is: ", crypto)
     let ecPair = ecPair->ECPair.setAddress(address)

@@ -36,6 +36,10 @@ var Utxo = {};
 
 var Transaction = {};
 
+var DSProof = {};
+
+var Ecash = {};
+
 var bitcoinCash = require("../bitcoincash");
 
 var crypto = require("../crypto");
@@ -175,6 +179,8 @@ exports.Schnorr = Schnorr;
 exports.SLP = SLP;
 exports.Utxo = Utxo;
 exports.Transaction = Transaction;
+exports.DSProof = DSProof;
+exports.Ecash = Ecash;
 exports.bitcoinCash = bitcoinCash;
 exports.crypto = crypto;
 exports.util = util;

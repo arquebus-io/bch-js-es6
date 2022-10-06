@@ -6,6 +6,8 @@ var defaultRestApi = "https://api.fullstack.cash/v5/";
 
 var Electrumx = {};
 
+var Control = {};
+
 var Address = {};
 
 var ECPair = {};
@@ -168,6 +170,7 @@ var BCHJS = {
 
 exports.defaultRestApi = defaultRestApi;
 exports.Electrumx = Electrumx;
+exports.Control = Control;
 exports.Address = Address;
 exports.ECPair = ECPair;
 exports.HDNode = HDNode;

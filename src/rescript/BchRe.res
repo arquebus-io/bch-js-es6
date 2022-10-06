@@ -36,7 +36,7 @@ type extModules =
 
 external require: string => extModules = "require"
 // @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
-@new external newControlModule: libConfiguration => extModules = "control"
+// @new external newControlModule: libConfiguration => extModules = "control"
 @new external newMiningModule: libConfiguration => extModules = "mining"
 @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
 // @new external newAddressModule: libConfiguration => extModules = "address"
@@ -65,6 +65,11 @@ external require: string => t = "require"
 @new external newElectrumxModule: libConfiguration => t = "electrumx"
 }
 
+module Control = {
+  type t
+external require: string => t = "require"
+@new external newControlModule: libConfiguration => t = "control"
+}
 module Address = {
   type t
   @new external newAddressModule: libConfiguration => t = "address"
@@ -160,7 +165,7 @@ let bitcoinCash = require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
 let blockchain = require("../blockchain")
-let control = require("../control")
+let control = Control.require("../control")
 let generating = require("../generating")
 let mining = require("../mining")
 let rawTransactions = require("../raw-transactions")
@@ -234,7 +239,7 @@ module BCHJS = {
             @as("Crypto") crypto: extModules,
             @as("Util") util: Util.t,
             @as("Blockchain") blockchain: extModules,
-            @as("Control") control: extModules,
+            @as("Control") control: Control.t,
             @as("Generating") generating: extModules,
             @as("Mining") mining: extModules,
             @as("RawTransacations") rawTransactions: extModules,
@@ -283,7 +288,7 @@ module BCHJS = {
 
     let electrumx = Electrumx.newElectrumxModule(libConfig)
     // Js.log(electrumx)
-    let control = newControlModule(libConfig)
+    let control = Control.newControlModule(libConfig)
     let mining = newMiningModule(libConfig)
     let rawTransactions = newRawTransactionsModule(libConfig)
     let address = Address.newAddressModule(libConfig)

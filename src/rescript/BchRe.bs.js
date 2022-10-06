@@ -8,6 +8,8 @@ var Electrumx = {};
 
 var Control = {};
 
+var Mining = {};
+
 var Address = {};
 
 var ECPair = {};
@@ -171,6 +173,7 @@ var BCHJS = {
 exports.defaultRestApi = defaultRestApi;
 exports.Electrumx = Electrumx;
 exports.Control = Control;
+exports.Mining = Mining;
 exports.Address = Address;
 exports.ECPair = ECPair;
 exports.HDNode = HDNode;

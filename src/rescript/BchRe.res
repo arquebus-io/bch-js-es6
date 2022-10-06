@@ -37,7 +37,7 @@ type extModules =
 external require: string => extModules = "require"
 // @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
 // @new external newControlModule: libConfiguration => extModules = "control"
-@new external newMiningModule: libConfiguration => extModules = "mining"
+// @new external newMiningModule: libConfiguration => extModules = "mining"
 @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
 // @new external newAddressModule: libConfiguration => extModules = "address"
 // @new external newBitcoinCashModule: libConfiguration => extModules = "bitcoinCash"
@@ -69,6 +69,11 @@ module Control = {
   type t
 external require: string => t = "require"
 @new external newControlModule: libConfiguration => t = "control"
+}
+module Mining = {
+  type t
+external require: string => t = "require"
+@new external newMiningModule: libConfiguration => t = "mining"
 }
 module Address = {
   type t
@@ -167,7 +172,7 @@ let util = Util.require("../util")
 let blockchain = require("../blockchain")
 let control = Control.require("../control")
 let generating = require("../generating")
-let mining = require("../mining")
+let mining = Mining.require("../mining")
 let rawTransactions = require("../raw-transactions")
 let mnemonic = require("../mnemonic")
 let address = require("../address")
@@ -241,7 +246,7 @@ module BCHJS = {
             @as("Blockchain") blockchain: extModules,
             @as("Control") control: Control.t,
             @as("Generating") generating: extModules,
-            @as("Mining") mining: extModules,
+            @as("Mining") mining: Mining.t,
             @as("RawTransacations") rawTransactions: extModules,
             @as("Mnemonic") mnemonic: Mnemonic.t,
             @as("HDNode") hdNode: HDNode.t,
@@ -289,7 +294,7 @@ module BCHJS = {
     let electrumx = Electrumx.newElectrumxModule(libConfig)
     // Js.log(electrumx)
     let control = Control.newControlModule(libConfig)
-    let mining = newMiningModule(libConfig)
+    let mining = Mining.newMiningModule(libConfig)
     let rawTransactions = newRawTransactionsModule(libConfig)
     let address = Address.newAddressModule(libConfig)
     // Js.log2("Address module is: ", address)

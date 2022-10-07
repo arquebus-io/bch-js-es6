@@ -106,6 +106,7 @@ module TransactionBuilder = {
 }
 module BitcoinCash = {
   type t
+external require: string => t = "require"
 @new external newBitcoinCashModule: Address.t => t = "bitcoinCash"
 }
 module Blockchain = {
@@ -176,7 +177,7 @@ module PsfSlpIndexer = {
 external require: string => t = "require"
 @new external newPsfSlpIndexerModule: libConfiguration => t = "psfSlpIndexer"
 }
-let bitcoinCash = require("../bitcoincash")
+let bitcoinCash = BitcoinCash.require("../bitcoincash")
 let crypto = require("../crypto")
 let util = Util.require("../util")
 let blockchain = Blockchain.require("../blockchain")

@@ -126,7 +126,7 @@ module Encryption = {
 module Generating = {
   type t
 external require: string => t = "require"
-@new external newGeneratingModule: libConfiguration => extModules = "generating"
+@new external newGeneratingModule: libConfiguration => t = "generating"
 }
 module Price = {
   type t
@@ -257,7 +257,7 @@ module BCHJS = {
             @as("Util") util: Util.t,
             @as("Blockchain") blockchain: Blockchain.t,
             @as("Control") control: Control.t,
-            @as("Generating") generating: extModules,
+            @as("Generating") generating: Generating.t,
             @as("Mining") mining: Mining.t,
             @as("RawTransacations") rawTransactions:RawTransactions.t,
             @as("Mnemonic") mnemonic: Mnemonic.t,

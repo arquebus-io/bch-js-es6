@@ -34,30 +34,6 @@ type extModules =
   | Electrumx
   | PsfSlpIndexer
 
-// @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
-// @new external newControlModule: libConfiguration => extModules = "control"
-// @new external newMiningModule: libConfiguration => extModules = "mining"
-// @new external newRawTransactionsModule: libConfiguration => extModules = "rawTransactions"
-// @new external newAddressModule: libConfiguration => extModules = "address"
-// @new external newBitcoinCashModule: libConfiguration => extModules = "bitcoinCash"
-// @new external newBlockchainModule: libConfiguration => extModules = "blockchain"
-// @new external newCryptoModule: unit => extModules = "crypto"
-// @new external newECPairModule: unit => extModules = "ECPair"
-// @new external newEncryptionModule: libConfiguration => extModules = "encryption"
-// @new external newGeneratingModule: libConfiguration => extModules = "generating"
-// @new external newHDNodeModule: extModules => extModules = "HDNode"
-// @new external newMnemonicModule: libConfiguration => extModules = "Mnemonic"
-// @new external newPriceModule: libConfiguration => extModules = "price"
-// @new external newScriptModule: libConfiguration => extModules = "script"
-// @new external newTransactionBuilderModule: libConfiguration => extModules = "TransactionBuilder"
-// @new external newUtilModule: libConfiguration => extModules = "util"
-// @new external newSchnorrModule: libConfiguration => extModules = "schnorr"
-// @new external newSLPModule: libConfiguration => extModules = "slp"
-// @new external newUtxoModule: libConfiguration => extModules = "utxo"
-// @new external newTransactionModule: libConfiguration => extModules = "transaction"
-// @new external newDSProofModule: libConfiguration => extModules = "dsProof"
-// @new external newECashModule: libConfiguration => extModules = "eCash"
-// @new external newPsfSlpIndexerModule: libConfiguration => extModules = "psfSlpIndexer"
 module Electrumx = {
   type t
 external require: string => t = "require"

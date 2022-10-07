@@ -37,45 +37,45 @@ type extModules =
 module Electrumx = {
   type t
 external require: string => t = "require"
-@new external newElectrumxModule: libConfiguration => t = "electrumx"
+@new external new: libConfiguration => t = "electrumx"
 }
 
 module RawTransactions = {
   type t
 external require: string => t = "require"
-@new external newRawTransactionsModule: libConfiguration => t = "rawTransactions"
+@new external new: libConfiguration => t = "rawTransactions"
 }
 module Control = {
   type t
 external require: string => t = "require"
-@new external newControlModule: libConfiguration => t = "control"
+@new external new: libConfiguration => t = "control"
 }
 module Mining = {
   type t
 external require: string => t = "require"
-@new external newMiningModule: libConfiguration => t = "mining"
+@new external new: libConfiguration => t = "mining"
 }
 module Address = {
   type t
 external require: string => t = "require"
-  @new external newAddressModule: libConfiguration => t = "address"
+  @new external new: libConfiguration => t = "address"
 }
 module ECPair = {
   type t
 external require: string => t = "require"
   @send
   external setAddress: (t, Address.t) => t = "setAddress"
-  @new external newECPairModule: unit => t = "ecPair"
+  @new external new: unit => t = "ecPair"
 }
 module HDNode = {
   type t
 external require: string => t = "require"
-  @new external newHDNodeModule: Address.t => t = "hdNode"
+  @new external new: Address.t => t = "hdNode"
 }
 module Mnemonic = {
   type t
 external require: string => t = "require"
-  @new external newMnemonicModule: Address.t => t = "mnemonic"
+  @new external new: Address.t => t = "mnemonic"
 }
 module TransactionBuilder = {
   type t
@@ -85,77 +85,77 @@ external require: string => t = "require"
 module BitcoinCash = {
   type t
 external require: string => t = "require"
-@new external newBitcoinCashModule: Address.t => t = "bitcoinCash"
+@new external new: Address.t => t = "bitcoinCash"
 }
 module Blockchain = {
   type t
 external require: string => t = "require"
-@new external newBlockchainModule: libConfiguration => t = "blockchain"
+@new external new: libConfiguration => t = "blockchain"
 }
 module Crypto = {
   type t
 external require: string => t = "require"
-@new external newCryptoModule: unit => t = "crypto"
+@new external new: unit => t = "crypto"
 }
 module Encryption = {
   type t
 external require: string => t = "require"
-@new external newEncryptionModule: libConfiguration => t = "encryption"
+@new external new: libConfiguration => t = "encryption"
 }
 module Generating = {
   type t
 external require: string => t = "require"
-@new external newGeneratingModule: libConfiguration => t = "generating"
+@new external new: libConfiguration => t = "generating"
 }
 module Price = {
   type t
-@new external newPriceModule: libConfiguration => t = "price"
+@new external new: libConfiguration => t = "price"
 external require: string => t = "require"
 }
 module Script = {
   type t
 external require: string => t = "require"
-@new external newScriptModule: libConfiguration => t = "script"
+@new external new: libConfiguration => t = "script"
 }
 module Util = {
   type t
 external require: string => t = "require"
-@new external newUtilModule: libConfiguration => t = "util"
+@new external new: libConfiguration => t = "util"
 }
 module Schnorr = {
   type t
 external require: string => t = "require"
-@new external newSchnorrModule: libConfiguration => t = "schnorr"
+@new external new: libConfiguration => t = "schnorr"
 }
 module SLP = {
   type t
 external require: string => t = "require"
-@new external newSLPModule: libConfiguration => t = "slp"
+@new external new: libConfiguration => t = "slp"
 }
 module Utxo = {
   type t
 external require: string => t = "require"
-@new external newUtxoModule: libConfiguration => t = "utxo"
+@new external new: libConfiguration => t = "utxo"
 }
 module Transaction = {
   type t
 external require: string => t = "require"
-@new external newTransactionModule: libConfiguration => t = "transaction"
+@new external new: libConfiguration => t = "transaction"
 }
 module DSProof = {
   type t
 external require: string => t = "require"
-@new external newDSProofModule: libConfiguration => t = "dsProof"
+@new external new: libConfiguration => t = "dsProof"
 }
 module Ecash = {
   type t
 external require: string => t = "require"
-@new external newECashModule: libConfiguration => t = "eCash"
+@new external new: libConfiguration => t = "eCash"
 }
 module PsfSlpIndexer = {
   type t
 external require: string => t = "require"
-@new external newPsfSlpIndexerModule: libConfiguration => t = "psfSlpIndexer"
+@new external new: libConfiguration => t = "psfSlpIndexer"
 }
 let bitcoinCash = BitcoinCash.require("../bitcoincash")
 let crypto = Crypto.require("../crypto")
@@ -250,38 +250,38 @@ module BCHJS = {
       authToken,
     }
 
-    let electrumx = Electrumx.newElectrumxModule(libConfig)
+    let electrumx = Electrumx.new(libConfig)
     // Js.log(electrumx)
-    let control = Control.newControlModule(libConfig)
-    let mining = Mining.newMiningModule(libConfig)
-    let rawTransactions = RawTransactions.newRawTransactionsModule(libConfig)
-    let address = Address.newAddressModule(libConfig)
+    let control = Control.new(libConfig)
+    let mining = Mining.new(libConfig)
+    let rawTransactions = RawTransactions.new(libConfig)
+    let address = Address.new(libConfig)
     // Js.log2("Address module is: ", address)
-    let blockchain = Blockchain.newBlockchainModule(libConfig)
+    let blockchain = Blockchain.new(libConfig)
     // let crypto = newCryptoModule()
     Js.log2("Crypto module is: ", crypto)
     // let ecPair = ECPair.newECPairModule()
-    let encryption = Encryption.newEncryptionModule(libConfig)
-    let generating = Generating.newGeneratingModule(libConfig)
+    let encryption = Encryption.new(libConfig)
+    let generating = Generating.new(libConfig)
     //let hdNode = newHDNodeModule(address)
     // let mnemonic = newMnemonicModule(libConfig)
-    let price = Price.newPriceModule(libConfig)
-    let script = Script.newScriptModule(libConfig)
+    let price = Price.new(libConfig)
+    let script = Script.new(libConfig)
     // Js.log2("Script module is: ", script)
-    let util = Util.newUtilModule(libConfig)
-    let schnorr = Schnorr.newSchnorrModule(libConfig)
-    let slp = SLP.newSLPModule(libConfig)
-    let utxo = Utxo.newUtxoModule(libConfig)
-    let transaction = Transaction.newTransactionModule(libConfig)
-    let dsProof = DSProof.newDSProofModule(libConfig)
-    let ecash = Ecash.newECashModule(libConfig)
-    let psfSlpIndexer = PsfSlpIndexer.newPsfSlpIndexerModule(libConfig)
+    let util = Util.new(libConfig)
+    let schnorr = Schnorr.new(libConfig)
+    let slp = SLP.new(libConfig)
+    let utxo = Utxo.new(libConfig)
+    let transaction = Transaction.new(libConfig)
+    let dsProof = DSProof.new(libConfig)
+    let ecash = Ecash.new(libConfig)
+    let psfSlpIndexer = PsfSlpIndexer.new(libConfig)
     // Js.log2("Crypto module is: ", crypto)
     let ecPair = ecPair->ECPair.setAddress(address)
-    let hdNode = HDNode.newHDNodeModule(address)
-    let mnemonic = Mnemonic.newMnemonicModule(address)
+    let hdNode = HDNode.new(address)
+    let mnemonic = Mnemonic.new(address)
     let transactionBuilder = TransactionBuilder.setAddress(address)
-    let bitcoinCash = BitcoinCash.newBitcoinCashModule(address)
+    let bitcoinCash = BitcoinCash.new(address)
     {
       address: address,
       bitcoinCash: bitcoinCash,

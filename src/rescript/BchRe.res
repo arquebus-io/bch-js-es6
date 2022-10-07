@@ -34,7 +34,6 @@ type extModules =
   | Electrumx
   | PsfSlpIndexer
 
-external require: string => extModules = "require"
 // @new external newElectrumxModule: libConfiguration => extModules = "electrumx"
 // @new external newControlModule: libConfiguration => extModules = "control"
 // @new external newMiningModule: libConfiguration => extModules = "mining"

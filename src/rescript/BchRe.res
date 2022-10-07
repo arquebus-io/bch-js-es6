@@ -304,7 +304,7 @@ module BCHJS = {
       utxo: utxo,
       transaction: transaction,
       dsProof: dsProof,
-      eCash: eCash,
+      eCash: ecash,
       electrumx: electrumx,
       psfSlpIndexer: psfSlpIndexer
     }

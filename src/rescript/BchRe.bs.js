@@ -135,7 +135,7 @@ function make(config) {
   var utxo$2 = new utxo(libConfig);
   var transaction$2 = new transaction(libConfig);
   var dsProof$2 = new dsProof(libConfig);
-  new eCash(libConfig);
+  var ecash = new eCash(libConfig);
   var psfSlpIndexer$2 = new psfSlpIndexer(libConfig);
   var ecPair$1 = ecPair.setAddress(address$2);
   var hdNode$2 = new hdNode(address$2);
@@ -164,7 +164,7 @@ function make(config) {
           Utxo: utxo$2,
           Transaction: transaction$2,
           DSProof: dsProof$2,
-          Ecash: eCash,
+          Ecash: ecash,
           Electrumx: electrumx$2,
           PsfSlpIndexer: psfSlpIndexer$2
         };

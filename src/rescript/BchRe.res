@@ -116,6 +116,7 @@ external require: string => t = "require"
 }
 module Crypto = {
   type t
+external require: string => t = "require"
 @new external newCryptoModule: unit => t = "crypto"
 }
 module Encryption = {
@@ -178,7 +179,7 @@ external require: string => t = "require"
 @new external newPsfSlpIndexerModule: libConfiguration => t = "psfSlpIndexer"
 }
 let bitcoinCash = BitcoinCash.require("../bitcoincash")
-let crypto = require("../crypto")
+let crypto = Crypto.require("../crypto")
 let util = Util.require("../util")
 let blockchain = Blockchain.require("../blockchain")
 let control = Control.require("../control")
@@ -252,7 +253,7 @@ module BCHJS = {
   type t = {@as("Address") address: Address.t,
             @as("BitcoinCash") bitcoinCash :BitcoinCash.t,
             @as("Script") script: Script.t,
-            @as("Crypto") crypto: extModules,
+            @as("Crypto") crypto: Crypto.t,
             @as("Util") util: Util.t,
             @as("Blockchain") blockchain: Blockchain.t,
             @as("Control") control: Control.t,

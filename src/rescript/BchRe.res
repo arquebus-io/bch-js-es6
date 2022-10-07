@@ -196,38 +196,6 @@ type configurationObject = {
 }
 type configuration = option<configurationObject>
 
-// module Address = {
-//   type t
-//   @new external newAddressModule: libConfiguration => t = "address"
-// }
-// module ECPair = {
-//   type t
-//   @send
-//   external setAddress: (t, Address.t) => t = "setAddress"
-//   @new external newECPairModule: unit => t = "ecPair"
-// }
-// module HDNode = {
-//   type t
-//   @new external newHDNodeModule: Address.t => t = "hdNode"
-// }
-// module Mnemonic = {
-//   type t
-//   @new external newMnemonicModule: Address.t => t = "mnemonic"
-// }
-// module TransactionBuilder = {
-//   type t
-//   @new external setAddress: Address.t => t = "transactionBuilder"
-// }
-// module BitcoinCash = {
-//   type t
-// @new external newBitcoinCashModule: Address.t => t = "bitcoinCash"
-// }
-// module Crypto = {
-//   type t
-// external require: string => t = "require"
-// @new external newCryptoModule: unit => t = "crypto"
-// }
-
 module BCHJS = {
   type t = {@as("Address") address: Address.t,
             @as("BitcoinCash") bitcoinCash :BitcoinCash.t,

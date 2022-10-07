@@ -82,6 +82,7 @@ external require: string => t = "require"
 }
 module Address = {
   type t
+external require: string => t = "require"
   @new external newAddressModule: libConfiguration => t = "address"
 }
 module ECPair = {
@@ -98,10 +99,12 @@ external require: string => t = "require"
 }
 module Mnemonic = {
   type t
+external require: string => t = "require"
   @new external newMnemonicModule: Address.t => t = "mnemonic"
 }
 module TransactionBuilder = {
   type t
+external require: string => t = "require"
   @new external setAddress: Address.t => t = "transactionBuilder"
 }
 module BitcoinCash = {
@@ -121,6 +124,7 @@ external require: string => t = "require"
 }
 module Encryption = {
   type t
+external require: string => t = "require"
 @new external newEncryptionModule: libConfiguration => t = "encryption"
 }
 module Generating = {
@@ -183,15 +187,15 @@ let crypto = Crypto.require("../crypto")
 let util = Util.require("../util")
 let blockchain = Blockchain.require("../blockchain")
 let control = Control.require("../control")
-let generating = require("../generating")
+let generating = Generating.require("../generating")
 let mining = Mining.require("../mining")
 let rawTransactions = RawTransactions.require("../raw-transactions")
-let mnemonic = require("../mnemonic")
-let address = require("../address")
-let hdNode = require("../hdnode")
-let transactionBuilder = require("../transaction-builder")
+let mnemonic = Mnemonic.require("../mnemonic")
+let address = Address.require("../address")
+let hdNode = HDNode.require("../hdnode")
+let transactionBuilder = TransactionBuilder.require("../transaction-builder")
 let ecPair = ECPair.require("../ecpair")
-let script = require("../script")
+let script = Script.require("../script")
 let price = Price.require("../price")
 let schnorr = Schnorr.require("../schnorr")
 let slp = SLP.require("../slp/slp")
@@ -200,7 +204,7 @@ let utxo = Utxo.require("../utxo")
 let transaction = Transaction.require("../transaction")
 let dsProof = DSProof.require("../dsproof")
 let eCash = Ecash.require("../ecash")
-let electrumx = require("../electrumx")
+let electrumx = Electrumx.require("../electrumx")
 let psfSlpIndexer = PsfSlpIndexer.require("../psf-slp-indexer")
 
 type restURL = string

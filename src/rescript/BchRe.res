@@ -8,7 +8,7 @@ type libConfiguration = {
 @val @scope(("process", "env")) external envApiToken: string = "BCHJSTOKEN"
 @val @scope(("process", "env")) external envAuthPass: string = "BCHJSAUTHPASS"
 
-type extModules =
+type modules =
   | BitcoinCash
   | Crypto
   | Util
@@ -34,9 +34,42 @@ type extModules =
   | Electrumx
   | PsfSlpIndexer
 
+external requireModule: (string, 'a) => 'a = "require"
+
+let requireInternal = (modules, moduleType) => {
+  switch modules {
+  | BitcoinCash => requireModule("../bitcoincash", moduleType)
+  | Crypto => requireModule("../crypto", moduleType)
+  | Util => requireModule("../util", moduleType)
+  | Blockchain => requireModule("../blockchain", moduleType)
+  | Control => requireModule("../control", moduleType)
+  | Generating => requireModule("../generating", moduleType)
+  | Mining => requireModule("../mining", moduleType)
+  | RawTransactions => requireModule("../raw-transaction", moduleType)
+  | Menmonic => requireModule("../mnemonic", moduleType)
+  | Address => requireModule("../address", moduleType)
+  | HDNode => requireModule("../hdnode", moduleType)
+  | TransactionBuilder => requireModule("../transaction-builder", moduleType)
+  | ECPair => requireModule("../ecpair", moduleType)
+  | Script => requireModule("../script", moduleType)
+  | Price => requireModule("../price", moduleType)
+  | Schnorr => requireModule("../schnorr", moduleType)
+  | SLP => requireModule("../slp/slp", moduleType)
+  | Encryption => requireModule("../ecryption", moduleType)
+  | Utxo => requireModule("../utxo", moduleType)
+  | Transaction => requireModule("../transaction", moduleType)
+  | DSProof => requireModule("../dsproof", moduleType)
+  | Ecash => requireModule("../ecash", moduleType)
+  | Electrumx => requireModule("../electrumx", moduleType)
+  | PsfSlpIndexer => requireModule("../psf-slp-indexer", moduleType)
+  }
+}
+
 module Electrumx = {
   type t
-external require: string => t = "require"
+  let require = (t) => {
+    requireInternal(Electrumx, t)
+  }
 @new external new: libConfiguration => t = "electrumx"
 }
 
@@ -157,6 +190,8 @@ module PsfSlpIndexer = {
 external require: string => t = "require"
 @new external new: libConfiguration => t = "psfSlpIndexer"
 }
+
+
 let bitcoinCash = BitcoinCash.require("../bitcoincash")
 let crypto = Crypto.require("../crypto")
 let util = Util.require("../util")
@@ -179,7 +214,7 @@ let utxo = Utxo.require("../utxo")
 let transaction = Transaction.require("../transaction")
 let dsProof = DSProof.require("../dsproof")
 let eCash = Ecash.require("../ecash")
-let electrumx = Electrumx.require("../electrumx")
+let electrumx = Electrumx.require()
 let psfSlpIndexer = PsfSlpIndexer.require("../psf-slp-indexer")
 
 type restURL = string

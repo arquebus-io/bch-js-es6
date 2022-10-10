@@ -4,7 +4,67 @@
 
 var defaultRestApi = "https://api.fullstack.cash/v5/";
 
-var Electrumx = {};
+function requireInternal(modules, moduleType) {
+  switch (modules) {
+    case /* BitcoinCash */0 :
+        return require("../bitcoincash", moduleType);
+    case /* Crypto */1 :
+        return require("../crypto", moduleType);
+    case /* Util */2 :
+        return require("../util", moduleType);
+    case /* Blockchain */3 :
+        return require("../blockchain", moduleType);
+    case /* Control */4 :
+        return require("../control", moduleType);
+    case /* Generating */5 :
+        return require("../generating", moduleType);
+    case /* Mining */6 :
+        return require("../mining", moduleType);
+    case /* RawTransactions */7 :
+        return require("../raw-transaction", moduleType);
+    case /* Menmonic */8 :
+        return require("../mnemonic", moduleType);
+    case /* Address */9 :
+        return require("../address", moduleType);
+    case /* HDNode */10 :
+        return require("../hdnode", moduleType);
+    case /* TransactionBuilder */11 :
+        return require("../transaction-builder", moduleType);
+    case /* ECPair */12 :
+        return require("../ecpair", moduleType);
+    case /* Script */13 :
+        return require("../script", moduleType);
+    case /* Price */14 :
+        return require("../price", moduleType);
+    case /* Schnorr */15 :
+        return require("../schnorr", moduleType);
+    case /* SLP */16 :
+        return require("../slp/slp", moduleType);
+    case /* Encryption */17 :
+        return require("../ecryption", moduleType);
+    case /* Utxo */18 :
+        return require("../utxo", moduleType);
+    case /* Transaction */19 :
+        return require("../transaction", moduleType);
+    case /* DSProof */20 :
+        return require("../dsproof", moduleType);
+    case /* Ecash */21 :
+        return require("../ecash", moduleType);
+    case /* Electrumx */22 :
+        return require("../electrumx", moduleType);
+    case /* PsfSlpIndexer */23 :
+        return require("../psf-slp-indexer", moduleType);
+    
+  }
+}
+
+function $$require$1(t) {
+  return require("../electrumx", t);
+}
+
+var Electrumx = {
+  $$require: $$require$1
+};
 
 var RawTransactions = {};
 
@@ -96,7 +156,7 @@ var dsProof = require("../dsproof");
 
 var eCash = require("../ecash");
 
-var electrumx = require("../electrumx");
+var electrumx = require("../electrumx", undefined);
 
 var psfSlpIndexer = require("../psf-slp-indexer");
 
@@ -175,6 +235,7 @@ var BCHJS = {
 };
 
 exports.defaultRestApi = defaultRestApi;
+exports.requireInternal = requireInternal;
 exports.Electrumx = Electrumx;
 exports.RawTransactions = RawTransactions;
 exports.Control = Control;

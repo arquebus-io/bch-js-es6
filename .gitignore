@@ -5,6 +5,17 @@ wallet.json
 integration-test-sweet.sh
 integration-test-ss.sh
 integration-test-bitfinex.sh
+.DS_Store
+.merlin
+.bsb.lock
+npm-debug.log
+/lib/bs/
+/bundleOutput/
+__tests__
+.vercel
+.env
+coverage/
+dist/
 
 docs/
 coverage/

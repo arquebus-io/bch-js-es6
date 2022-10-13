@@ -8,7 +8,6 @@ type libConfiguration = {
 @val @scope(("process", "env")) external envApiToken: string = "BCHJSTOKEN"
 @val @scope(("process", "env")) external envAuthPass: string = "BCHJSAUTHPASS"
 
-
 module Electrumx = {
   type t
 
@@ -35,7 +34,7 @@ module ECPair = {
   type t
   external require: string => t = "require"
   @send
-  external setAddress: (t, Address.t) => () = "setAddress"
+  external setAddress: (t, Address.t) => unit = "setAddress"
 }
 module HDNode = {
   type t
@@ -48,7 +47,7 @@ module Mnemonic = {
 module TransactionBuilder = {
   type t
   external require: string => t = "require"
-  @send external setAddress:(t,Address.t) => () = "setAddress"
+  @send external setAddress: (t, Address.t) => unit = "setAddress"
 }
 module BitcoinCash = {
   type t
@@ -76,7 +75,7 @@ module Price = {
 }
 module Script = {
   type t
-  @module @new external new: () => t = "../script"
+  @module @new external new: unit => t = "../script"
 }
 module Util = {
   type t
@@ -107,7 +106,7 @@ module DSProof = {
 }
 module Ecash = {
   type t
-  @module @new external new: () => t = "../ecash"
+  @module @new external new: unit => t = "../ecash"
 }
 module PsfSlpIndexer = {
   type t
